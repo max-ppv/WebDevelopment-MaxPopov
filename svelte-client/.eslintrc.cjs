@@ -16,5 +16,11 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
-	}
+	},
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'prettier', // Для устранения конфликтующих правил ESLint
+		'plugin:prettier/recommended' // Помещает правила Prettier в ESLint
+	],
 };

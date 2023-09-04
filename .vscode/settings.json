@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true, // Format on save enabled
+  "files.insertFinalNewline": true, // New line at the end of file
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Default formatter configured to Prettier
+  "editor.codeActionsOnSave": {
+    // ESLint configured to auto-fix all auto-fixable problems
+    "source.fixAll.eslint": true
+  },
+  "eslint.run": "onSave"
+}
