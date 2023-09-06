@@ -7,7 +7,7 @@
   "plugins": ["prettier-plugin-svelte"],
   "pluginSearchDirs": ["."],
   "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
-  "svelteSortOrder": "styles-scripts-markup",
+  "svelteSortOrder": "markup-scripts-styles-options",
   "svelteBracketNewLine": true,
   "svelteIndentScriptAndStyle": true,
   "svelteStrictMode": false
