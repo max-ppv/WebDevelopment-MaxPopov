@@ -2,3 +2,4 @@ svelte-client/README.md
 .DS_Store
 node_modules/
 dist/*
+start.sh

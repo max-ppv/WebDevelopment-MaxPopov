@@ -1,7 +1,10 @@
 <main>
   <div class="bg-white p-6 shadow-md rounded-md max-w-md mx-auto">
-    <div class="text-center mb-6">
-      <h1 class="text-2xl font-bold text-gray-800">Ticket Manager</h1>
+    <div class="text-center mb-6 flex">
+      <img src="logo.png" alt="Logo" class="mx-auto w-1/4 inline-block" />
+      <a class="m-auto text-2xl inline-block font-bold text-gray-800" href="/"
+        ><h1 class="">Ticket Manager</h1></a
+      >
     </div>
     <div class="space-y-4 mb-6">
       <!-- Содержимое меню и другие элементы могут быть добавлены здесь -->
@@ -10,9 +13,6 @@
     <!-- Этот слот будет автоматически заменен содержимым вашей страницы -->
   </div>
 </main>
-
-<script>
-</script>
 
 <style>
   @import 'tailwindcss/base';
