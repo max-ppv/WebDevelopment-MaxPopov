@@ -1,8 +1,17 @@
-import * as express from 'express';
+// @ts-ignore
+import { handler } from '../svelte-client/build/handler.js';
+import express from 'express';
 
 const app = express();
-const PORT = 4000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// add a route that lives separately from the SvelteKit app
+app.get('/healthcheck', (req, res) => {
+  res.end('ok');
+});
+
+// let SvelteKit handle everything else, including serving prerendered pages and static assets
+app.use(handler);
+
+app.listen(4000, () => {
+  console.log('listening on port 4000');
 });
