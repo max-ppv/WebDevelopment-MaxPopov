@@ -1,13 +1,22 @@
 {
+  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
-    "target": "ES6",
-    "module": "NodeNext",
-    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "utils/*": ["src/utils/*"],
+      "types/*": ["src/types/*"],
+      "service/*": ["src/service/*"]
+    },
+    "allowJs": true,
+    "checkJs": true,
     "esModuleInterop": true,
-    "moduleResolution": "nodenext",
-    "outDir": "dist",
-    "typeRoots": ["./node_modules/@types", "./declarations.d.ts"]
-  },
-  "include": ["*.ts"],
-  "exclude": ["node_modules"]
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true
+  }
 }

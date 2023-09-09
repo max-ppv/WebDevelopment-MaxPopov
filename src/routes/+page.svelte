@@ -12,7 +12,10 @@
     content="Navigate through the Ticket Manager app. Here you can find links to home, all tickets, create a ticket, and about pages."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="{import.meta.env.VITE_BASE_URL}/logo.png" />
+  <meta
+    property="og:image"
+    content="{import.meta.env.VITE_BASE_URL}/logo.png"
+  />
   <meta property="og:url" content={import.meta.env.VITE_BASE_URL} />
 </svelte:head>
 
