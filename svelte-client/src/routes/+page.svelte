@@ -6,7 +6,7 @@
     <span>📄</span> <a href="/tickets" class="text-gray-700">All Tickets</a>
   </div>
   <div class="flex items-center space-x-2">
-    <span>✎</span> <a href="/create" class="text-gray-700">Create a Ticket</a>
+    <span>✎</span> <a href="/edit" class="text-gray-700">Create a Ticket</a>
   </div>
   <div class="flex items-center space-x-2">
     <span>ℹ</span> <a href="/about" class="text-gray-700">About</a>
