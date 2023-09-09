@@ -12,8 +12,8 @@
     content="Ticket Manager: A simple, powerful IT ticketing and issue management system. Visit now to learn more!"
   />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="{import.meta.env.VITE_BASE_URL}/logo.png" />
-  <meta property="og:url" content="{import.meta.env.VITE_BASE_URL}/about" />
+  <meta property="og:image" content="https://{process.env.VERCEL_URL}/logo.png" />
+  <meta property="og:url" content="https://{process.env.VERCEL_URL}/about" />
 </svelte:head>
 
 <div class="mb-6 text-center">
