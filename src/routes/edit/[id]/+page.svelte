@@ -67,6 +67,7 @@
     class="w-full p-2 border rounded appearance-none"
     required
   >
+    <option value="" disabled selected>Select a problem type</option>
     <option value="Technical Issue">Technical Issue</option>
     <option value="HR Issue">HR Issue</option>
     <option value="Payment Discrepancy">Payment Discrepancy</option>
@@ -90,7 +91,7 @@
     <div>
       <label class="mr-2"><input type="radio" bind:group={ticket.resolved} value="yes" /> Yes</label
       >
-      <label><input type="radio" bind:group={ticket.resolved} value="no" checked /> No</label>
+      <label><input type="radio" bind:group={ticket.resolved} value="no" /> No</label>
     </div>
   </div>
 </div>
@@ -103,7 +104,7 @@
       goto('/');
     }}>Cancel</button
   >
-  <button class="px-4 py-2 bg-purple-500 text-white rounded" on:click={saveData}>Save</button>
+  <button class="px-4 py-2 text-white bg-purple-500 rounded" on:click={saveData}>Save</button>
 </div>
 
 <!-- Errors -->
