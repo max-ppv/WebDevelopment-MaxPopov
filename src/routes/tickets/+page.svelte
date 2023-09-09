@@ -18,9 +18,9 @@
   <meta property="og:type" content="website" />
   <meta
     property="og:image"
-    content="https://{process.env.VERCEL_URL}/logo.png"
+    content="{import.meta.env.VITE_BASE_URL}/logo.png"
   />
-  <meta property="og:url" content="https://{process.env.VERCEL_URL}/tickets" />
+  <meta property="og:url" content="{import.meta.env.VITE_BASE_URL}/tickets" />
 </svelte:head>
 
 <div class="space-y-4">
