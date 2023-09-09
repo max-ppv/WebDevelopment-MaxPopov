@@ -1,5 +1,20 @@
 <!-- Input Fields -->
+<svelte:head>
+  <title>{pageTitle} - Ticket Manager</title>
+  <meta name="description" content="Editing the ticket details for Ticket Manager system." />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="{pageTitle} - Ticket Manager" />
+  <meta property="og:description" content="Editing the ticket details for Ticket Manager system." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{import.meta.env.VITE_BASE_URL}/logo.png" />
+  <meta property="og:url" content="{import.meta.env.VITE_BASE_URL}/edit/{data.id}" />
+</svelte:head>
+
 <div class="space-y-1">
+  {#if data.id !== 'new'}
+    <div class="text-sm text-gray-400">id: {data.id}</div>
+  {/if}
   <!-- First Name Input -->
   <label for="firstName" class="block text-gray-700">First Name *</label>
   <input
@@ -82,7 +97,12 @@
 
 <!-- Buttons -->
 <div class="flex justify-between mt-4">
-  <button class="px-4 py-2 border rounded">Cancel</button>
+  <button
+    class="px-4 py-2 border rounded"
+    on:click={() => {
+      goto('/');
+    }}>Cancel</button
+  >
   <button class="px-4 py-2 bg-purple-500 text-white rounded" on:click={saveData}>Save</button>
 </div>
 
@@ -98,10 +118,13 @@
 
 <script lang="ts">
   import { writable } from 'svelte/store';
+  import { onMount } from 'svelte';
   import { isValidEmail } from 'utils/check';
   import type { Ticket } from 'types/ticket';
   import { db } from 'service/firebase';
-  import { ref, set, push } from 'firebase/database';
+  import { get, ref, set, push } from 'firebase/database';
+  import { goto } from '$app/navigation';
+  export let data;
 
   let ticket: Ticket = resetTicket();
 
@@ -120,6 +143,12 @@
   // Reactive messages
   const errorMessage = writable('');
   const successMessage = writable('');
+
+  if (data.id !== 'new') {
+    onMount(() => {
+      loadTicket(data.id);
+    });
+  }
 
   async function saveData() {
     if (typeof ticket.employeeID !== 'number') {
@@ -141,14 +170,28 @@
     successMessage.set('');
 
     try {
-      const newTicketRef = push(ref(db, 'tickets'));
-      await set(newTicketRef, ticket);
+      if (data.id !== 'new') {
+        await set(ref(db, `tickets/${data.id}`), ticket);
+      } else {
+        const newTicketRef = push(ref(db, 'tickets'));
+        await set(newTicketRef, ticket);
+      }
       successMessage.set('Data saved successfully!');
-
       ticket = resetTicket();
     } catch (error) {
       errorMessage.set('Error saving data.');
       console.error('Error saving data: ', error);
     }
   }
+
+  async function loadTicket(id: string) {
+    const snapshot = await get(ref(db, `tickets/${id}`));
+    if (snapshot.exists()) {
+      ticket = snapshot.val();
+    } else {
+      goto('/edit/new');
+    }
+  }
+
+  let pageTitle = data.id !== 'new' ? `Editing Ticket: ${data.id}` : 'New Ticket';
 </script>

@@ -1,5 +1,20 @@
+<svelte:head>
+  <title>List of Tickets - Your Service Name</title>
+  <meta name="description" content="Browse the list of tickets and their status in our system." />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="List of Tickets" />
+  <meta
+    property="og:description"
+    content="Browse the list of tickets and their status in our system."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{import.meta.env.VITE_BASE_URL}/logo.png" />
+  <meta property="og:url" content="{import.meta.env.VITE_BASE_URL}/tickets" />
+</svelte:head>
+
 <div class="space-y-4">
-  {#each tickets as ticket}
+  {#each data.tickets as ticket}
     <div class="p-4 border rounded shadow-sm">
       <h3 class="text-xl font-bold">
         <a href={`tickets/${ticket.id}`}>
@@ -12,26 +27,6 @@
   {/each}
 </div>
 
-<!-- Tickets.svelte -->
 <script lang="ts">
-  import { ref, onValue } from 'firebase/database';
-  import type { Ticket } from 'types/ticket';
-  import { db } from 'service/firebase';
-
-  type RenderedTicket = Ticket & { id: string };
-  let tickets: RenderedTicket[] = [];
-
-  const ticketsRef = ref(db, 'tickets');
-
-  onValue(
-    ticketsRef,
-    (snapshot) => {
-      const data = snapshot.val();
-      tickets = Object.keys(data).map((key) => ({ ...data[key], id: key })) as RenderedTicket[];
-      console.log('tickets', tickets);
-    },
-    {
-      onlyOnce: true
-    }
-  );
+  export let data;
 </script>
