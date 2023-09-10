@@ -8,7 +8,7 @@ export const load = async () => {
 
   const ticketsRef = ref(db, 'tickets');
 
-  const tickets: RenderedTicket[] = await new Promise((resolve, reject) => {
+  const tickets: RenderedTicket[] = await new Promise((resolve) => {
     onValue(
       ticketsRef,
       (snapshot) => {

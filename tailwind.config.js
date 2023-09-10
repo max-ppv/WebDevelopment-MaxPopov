@@ -3,7 +3,7 @@ export default {
   purge: ['./src/**/*.svelte', './src/**/*.html'],
   content: [],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-}
+  plugins: []
+};
