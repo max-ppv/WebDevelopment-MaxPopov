@@ -1,4 +1,4 @@
-export interface Ticket {
+export type Ticket = {
   firstName: string;
   lastName: string;
   employeeID: number | null;
@@ -6,4 +6,4 @@ export interface Ticket {
   problemType: string;
   problem: string;
   resolved: string;
-}
+};
