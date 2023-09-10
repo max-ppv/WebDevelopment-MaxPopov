@@ -125,7 +125,9 @@
   import { db } from 'service/firebase';
   import { get, ref, set, push } from 'firebase/database';
   import { goto } from '$app/navigation';
-  export let data;
+  export let data: {
+    id: string;
+  };
 
   let ticket: Ticket = resetTicket();
 

@@ -28,5 +28,11 @@
 </div>
 
 <script lang="ts">
-  export let data;
+  import type { Ticket } from 'types/ticket';
+  type ExtendedTicket = Ticket & {
+    id: string;
+  };
+  export let data: {
+    tickets: ExtendedTicket[];
+  };
 </script>
