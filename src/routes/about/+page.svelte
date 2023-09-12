@@ -17,7 +17,6 @@
 </svelte:head>
 
 <div class="mb-6 text-center">
-  <img src="/logo.png" alt="Ticket Manager Logo" class="w-32 mx-auto mb-4" />
   <p class="mb-4 text-gray-700">
     A simple service that powers an IT ticketing and issue management system. Very nice!
   </p>
