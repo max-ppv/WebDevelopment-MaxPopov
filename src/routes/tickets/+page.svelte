@@ -14,16 +14,21 @@
 </svelte:head>
 
 <div class="space-y-4">
+  <a href="/edit" class="block px-4 py-2 text-gray-700 border rounded">Create a Ticket</a>
   {#each data.tickets as ticket}
-    <div class="p-4 border rounded shadow-sm">
-      <h3 class="text-xl font-bold">
-        <a href={`tickets/${ticket.id}`}>
+    <a class="block" href={`tickets/${ticket.id}`}>
+      <div
+        class="ticket border p-4 rounded {ticket.resolved == 'yes'
+          ? 'border-blue-200'
+          : 'border-red-200'}"
+      >
+        <h3 class="text-xl font-bold">
           {ticket.firstName}
           {ticket.lastName}
-        </a>
-      </h3>
-      <p>Resolved: {ticket.resolved}</p>
-    </div>
+        </h3>
+        <p>Resolved: {ticket.resolved}</p>
+      </div>
+    </a>
   {/each}
 </div>
 

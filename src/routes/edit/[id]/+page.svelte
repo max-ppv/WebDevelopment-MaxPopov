@@ -11,7 +11,7 @@
   <meta property="og:url" content="{import.meta.env.VITE_BASE_URL}/edit/{data.id}" />
 </svelte:head>
 
-<div class="space-y-1">
+<div class="space-y-3">
   {#if data.id !== 'new'}
     <div class="text-sm text-gray-400">id: {data.id}</div>
   {/if}
@@ -94,17 +94,19 @@
       <label><input type="radio" bind:group={ticket.resolved} value="no" /> No</label>
     </div>
   </div>
-</div>
 
-<!-- Buttons -->
-<div class="flex justify-between mt-4">
-  <button
-    class="px-4 py-2 border rounded"
-    on:click={() => {
-      goto('/');
-    }}>Cancel</button
+  <!-- Buttons -->
+  <div class="grid grid-cols-2 gap-8">
+    <button
+      on:click={() => {
+        goto('/tickets');
+      }}
+      class="block px-4 py-2 text-gray-700 border rounded">Back</button
+    >
+    <button on:click={saveData} class="block px-4 py-2 text-gray-700 border border-blue-200 rounded"
+      >Save</button
+    ></div
   >
-  <button class="px-4 py-2 text-white bg-purple-500 rounded" on:click={saveData}>Save</button>
 </div>
 
 <!-- Errors -->
@@ -180,7 +182,7 @@
         await set(newTicketRef, ticket);
       }
       successMessage.set('Data saved successfully!');
-      ticket = resetTicket();
+      if (data.id == 'new') ticket = resetTicket();
     } catch (error) {
       errorMessage.set('Error saving data.');
       console.error('Error saving data: ', error);

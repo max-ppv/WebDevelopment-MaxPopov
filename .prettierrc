@@ -8,5 +8,6 @@
   "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
   "svelteSortOrder": "markup-scripts-styles-options",
   "svelteIndentScriptAndStyle": true,
-  "svelteStrictMode": false
+  "svelteStrictMode": false,
+  "htmlWhitespaceSensitivity": "strict"
 }

@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  purge: ['./src/**/*.svelte', './src/**/*.html'],
-  content: [],
+  content: ['./src/**/*.svelte', './src/**/*.html', '!./node_modules/**/*'],
   theme: {
     extend: {}
   },

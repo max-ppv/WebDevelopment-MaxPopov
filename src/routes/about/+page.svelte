@@ -21,8 +21,4 @@
     A simple service that powers an IT ticketing and issue management system. Very nice!
   </p>
 </div>
-<a
-  href="/"
-  class="block px-4 py-2 mx-auto text-white bg-blue-500 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-  >Back</a
->
+<a href="/" class="block px-4 py-2 text-gray-700 border rounded">Back to home</a>
