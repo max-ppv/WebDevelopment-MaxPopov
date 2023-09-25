@@ -1,5 +1,5 @@
 <main>
-  <div class="max-w-md p-6 mx-auto bg-white rounded-md shadow-md">
+  <div class="max-w-md p-6 mx-auto bg-white rounded-md">
     <a class="inline-block m-auto text-2xl font-bold text-gray-800" href="/"
       ><img src="/logo.png" alt="Logo" class="inline-block w-full mx-auto" /></a
     >
