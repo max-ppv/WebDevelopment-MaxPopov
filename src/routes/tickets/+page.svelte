@@ -14,7 +14,13 @@
 </svelte:head>
 
 <div class="space-y-4">
-  <a href="/edit" class="block px-4 py-2 text-gray-700 border rounded">Create a Ticket</a>
+  {#if $user}
+    <a href="/edit" class="block px-4 py-2 text-gray-700 border rounded">Create a Ticket</a>
+  {:else}
+    <a href="/login" class="block px-4 py-2 text-gray-700 border border-green-200 rounded"
+      >Login to create a Ticket</a
+    >
+  {/if}
   {#each data.tickets as ticket}
     <a class="block" href={`tickets/${ticket.id}`}>
       <div
@@ -33,6 +39,7 @@
 </div>
 
 <script lang="ts">
+  import { user } from 'service/authstore';
   import type { Ticket } from 'types/ticket';
   type ExtendedTicket = Ticket & {
     id: string;

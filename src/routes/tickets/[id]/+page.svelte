@@ -11,7 +11,7 @@
 </svelte:head>
 
 <div class="space-y-4">
-  <a href="/tickets" class="block px-4 py-2 text-gray-700 border rounded">Back to all tickets</a>
+  <a href="/tickets" class="block px-4 py-2 text-gray-700 border rounded">Back to all Tickets</a>
 
   <div class="ticket">
     <h2 class="text-xl">{data.firstName} {data.lastName}</h2>
@@ -25,23 +25,27 @@
     <p><strong>Resolved:</strong> {data.resolved}</p>
     <p><strong>Id:</strong> {data.id}</p>
   </div>
-  <!-- <div class="grid grid-cols-3 gap-8"> -->
-  <button
-    on:click={deleteTicket}
-    class="w-full px-4 py-2 text-gray-700 border border-red-200 rounded">Delete Ticket</button
-  >
-  <button
-    on:click={toggleResolve}
-    class="w-full px-4 py-2 text-gray-700 border {data.resolved === 'yes'
-      ? 'border-blue-200'
-      : 'border-green-200'} rounded"
-  >
-    {data.resolved === 'yes' ? 'Unresolve' : 'Quick Resolve'}
-  </button>
-  <button on:click={editTicket} class="w-full px-4 py-2 text-gray-700 border rounded"
-    >Edit Ticket</button
-  >
-  <!-- </div > -->
+  {#if $user}
+    <button
+      on:click={deleteTicket}
+      class="w-full px-4 py-2 text-gray-700 border border-red-200 rounded">Delete Ticket</button
+    >
+    <button
+      on:click={toggleResolve}
+      class="w-full px-4 py-2 text-gray-700 border {data.resolved === 'yes'
+        ? 'border-blue-200'
+        : 'border-green-200'} rounded"
+    >
+      {data.resolved === 'yes' ? 'Unresolve' : 'Quick Resolve'}
+    </button>
+    <button on:click={editTicket} class="w-full px-4 py-2 text-gray-700 border rounded"
+      >Edit Ticket</button
+    >
+  {:else}
+    <a href="/login" class="block w-full px-4 py-2 text-gray-700 border border-green-200 rounded"
+      >Login to manage the ticket</a
+    >
+  {/if}
 </div>
 
 <script lang="ts">
@@ -49,6 +53,7 @@
   import { db } from 'service/firebase';
   import { goto } from '$app/navigation';
   import type { Ticket } from 'types/ticket';
+  import { user } from 'service/authstore';
 
   type ExtendedTicket = Ticket & {
     id: string;

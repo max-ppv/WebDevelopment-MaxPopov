@@ -6,3 +6,4 @@ start.sh
 .gitignore
 .env.local
 build/
+.vercel/*

@@ -1,14 +1,19 @@
 import { error } from '@sveltejs/kit';
 import { db } from 'service/firebase';
 import { ref, onValue } from 'firebase/database';
+import { get } from 'svelte/store';
 import type { Ticket } from 'types/ticket';
+import { user } from 'service/authstore';
 
 export async function load({ params }: { params: { id: string } }) {
   console.log('params', params);
 
+  if (!params.id) {
+    return error(404, 'Not found');
+  }
   if (!params.id) throw error(404);
 
-  const ticketRef = ref(db, 'tickets/' + params.id);
+  const ticketRef = ref(db, `tickets/${params.id}`);
 
   return new Promise((resolve, reject) => {
     onValue(

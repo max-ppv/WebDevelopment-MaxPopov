@@ -18,6 +18,17 @@
 
 <div class="mb-6 space-y-4">
   <a href="/tickets" class="block px-4 py-2 text-gray-700 border rounded">All Tickets</a>
-  <a href="/edit" class="block px-4 py-2 text-gray-700 border rounded">Create a Ticket</a>
+  {#if $user}
+    <a href="/edit" class="block px-4 py-2 text-gray-700 border rounded">Create a Ticket</a>
+  {:else}
+    <a href="/login" class="block px-4 py-2 text-gray-700 border border-green-200 rounded">Login</a>
+  {/if}
   <a href="/about" class="block px-4 py-2 text-gray-700 border rounded">About</a>
+  {#if $user}
+    <a href="/logout" class="block px-4 py-2 text-gray-700 border border-red-200 rounded">Logout</a>
+  {/if}
 </div>
+
+<script lang="ts">
+  import { user } from 'service/authstore';
+</script>

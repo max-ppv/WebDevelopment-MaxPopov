@@ -101,7 +101,7 @@
       on:click={() => {
         goto('/tickets');
       }}
-      class="block px-4 py-2 text-gray-700 border rounded">Back</button
+      class="block px-4 py-2 text-gray-700 border rounded">All Tickets</button
     >
     <button on:click={saveData} class="block px-4 py-2 text-gray-700 border border-blue-200 rounded"
       >Save</button
@@ -120,6 +120,8 @@
 </div>
 
 <script lang="ts">
+  import { user as userStore } from 'service/authstore';
+  import type { User } from 'service/authstore';
   import { writable } from 'svelte/store';
   import { onMount } from 'svelte';
   import { isValidEmail } from 'utils/check';
@@ -130,6 +132,15 @@
   export let data: {
     id: string;
   };
+
+  let currentUser: User | null = null;
+
+  const unsubscribe = userStore.subscribe((value) => {
+    currentUser = value;
+    if (!currentUser || !currentUser.isLoggedIn) {
+      goto('/');
+    }
+  });
 
   let ticket: Ticket = resetTicket();
 
@@ -156,6 +167,10 @@
   }
 
   async function saveData() {
+    if (!currentUser || !currentUser.uid) {
+      goto('/');
+      return;
+    }
     if (typeof ticket.employeeID !== 'number') {
       errorMessage.set('Employee ID must be a number.');
       return;
@@ -175,10 +190,11 @@
     successMessage.set('');
 
     try {
+      const path = `tickets/${data.id}`;
       if (data.id !== 'new') {
-        await set(ref(db, `tickets/${data.id}`), ticket);
+        await set(ref(db, path), ticket);
       } else {
-        const newTicketRef = push(ref(db, 'tickets'));
+        const newTicketRef = push(ref(db, `tickets/`));
         await set(newTicketRef, ticket);
       }
       successMessage.set('Data saved successfully!');
@@ -188,6 +204,12 @@
       console.error('Error saving data: ', error);
     }
   }
+
+  onMount(() => {
+    return () => {
+      unsubscribe();
+    };
+  });
 
   async function loadTicket(id: string) {
     const snapshot = await get(ref(db, `tickets/${id}`));
