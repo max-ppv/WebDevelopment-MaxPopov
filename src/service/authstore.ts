@@ -10,6 +10,7 @@ export interface User {
 }
 
 const user: Writable<User | null> = writable(null);
+export const authChecked: Writable<boolean> = writable(false);
 const auth = getAuth(app);
 
 onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
@@ -21,6 +22,7 @@ onAuthStateChanged(auth, (firebaseUser: FirebaseUser | null) => {
   } else {
     user.set(null);
   }
+  authChecked.set(true);
 });
 
 export { user };

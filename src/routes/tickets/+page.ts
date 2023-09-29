@@ -20,7 +20,7 @@ export const load = async () => {
           })) as RenderedTicket[];
           resolve(formattedTickets);
         } else {
-          resolve([]); // Вернем пустой массив, если данных нет
+          resolve([]);
         }
       },
       {
