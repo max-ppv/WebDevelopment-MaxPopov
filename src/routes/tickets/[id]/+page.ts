@@ -1,9 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { db } from 'service/firebase';
 import { ref, onValue } from 'firebase/database';
-import { get } from 'svelte/store';
 import type { Ticket } from 'types/ticket';
-import { user } from 'service/authstore';
 
 export async function load({ params }: { params: { id: string } }) {
   console.log('params', params);

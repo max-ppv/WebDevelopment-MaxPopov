@@ -30,7 +30,7 @@
 
   let isUserLoggedIn: User | null = null;
 
-  let errorMessage: string = '';
+  let errorMessage = '';
 
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
