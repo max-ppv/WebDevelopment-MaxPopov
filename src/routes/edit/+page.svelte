@@ -1,5 +1,6 @@
 <svelte:head>
   <meta name="robots" content="noindex" />
+  <title>Redirect to New Ticket</title>
 </svelte:head>
 
 <script lang="ts">
